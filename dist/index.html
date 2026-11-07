@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#163f40">
+  <meta name="description" content="Play Hero Academy WhirlQuest: Skybound Adventures, a dimensional flipping adventure with sky trails, treasure combos and little maths discoveries.">
+  <title>WhirlQuest: Skybound Adventures | Hero Academy</title>
+  <link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./academy-client.css"></head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="https://heroacademy.app" aria-label="Hero Academy home">
+        <span class="brand-badge" aria-hidden="true">✦</span>
+        <span><strong>HERO ACADEMY</strong><small>little adventures, big discoveries</small></span>
+      </a>
+      <div class="header-actions">
+        <span class="header-tag"><span class="live-dot"></span> FREE TO PLAY</span>
+        <button class="profile-button" id="profile-button" type="button"><span class="profile-avatar" id="profile-avatar">I</span><span id="profile-label">Explorer</span><span aria-hidden="true">⌄</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome">
+        <div class="welcome-copy">
+          <div class="eyebrow"><span aria-hidden="true">✦</span> A BRAND-NEW HERO ACADEMY ADVENTURE</div>
+          <h1><em>WhirlQuest</em><span class="title-spark">✳</span></h1>
+          <p class="subtitle">Skybound Adventures</p>
+          <p>Flip. Glide. Soar through a colourful world of floating treasures, cloud castles and little discoveries!</p>
+          <div class="welcome-pills"><span>🧊 3D-style worlds</span><span>☝ One-tap fun</span><span>✦ 15 sky trails</span><span>♡ No pressure</span></div>
+        </div>
+        <div class="pip-scene" aria-label="Pip the friendly hero riding through the clouds" role="img">
+          <svg viewBox="0 0 250 205" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="130" cy="188" rx="90" ry="13" fill="#e5d9bc" opacity=".45"/>
+            <path d="M39 165c8-25 28-28 46-10 19-48 75-58 105-13 31-12 54 13 33 31H35Z" fill="#fff9e9" stroke="#e2d8ba" stroke-width="3"/>
+            <path d="M80 98c-32-13-40 12-25 26 16 11 32 2 40-5M170 103c31-22 44-6 34 12-9 16-30 15-42 4" fill="#acd6b4" stroke="#23665e" stroke-width="4" stroke-linecap="round"/>
+            <path d="M93 61Q114 33 135 59Q173 47 177 100Q178 144 136 153Q91 157 79 121Q69 87 93 61Z" fill="#f9c760" stroke="#184949" stroke-width="5"/>
+            <path d="M96 64Q107 49 126 56M140 57q16-6 26 8" fill="none" stroke="#ffe8a5" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="108" cy="105" rx="7" ry="10" fill="#143f43"/><ellipse cx="151" cy="102" rx="7" ry="10" fill="#143f43"/>
+            <circle cx="110" cy="101" r="2.5" fill="white"/><circle cx="153" cy="98" r="2.5" fill="white"/>
+            <path d="M122 119q9 11 19-1" stroke="#a35c37" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="92" cy="118" rx="9" ry="5" fill="#f5a471" opacity=".65"/><ellipse cx="163" cy="116" rx="9" ry="5" fill="#f5a471" opacity=".65"/>
+            <path d="m107 148-5 17m43-17 5 17" stroke="#184949" stroke-width="5" stroke-linecap="round"/>
+            <path d="M200 36l6 16 16 6-16 6-6 16-6-16-16-6 16-6Z" fill="#ffab54"/>
+            <circle cx="48" cy="54" r="5" fill="#c5e9bf"/><circle cx="234" cy="107" r="5" fill="#f8c35b"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="dashboard" aria-label="Game area">
+        <div class="play-column">
+          <div class="panel game-panel">
+            <div class="panel-top">
+              <div class="stage-title"><span class="stage-icon" id="stage-icon">🌿</span><span><small id="stage-kicker">MEADOW MEADOWS · TRAIL 01</small><strong id="stage-name">A Little Lift-Off</strong></span></div>
+              <div class="hud-chips"><span class="hud-score">✦ <b id="score">0</b></span><span class="hud-combo">⚡ <b id="combo">0</b></span></div>
+            </div>
+            <div class="progress-rail" aria-label="Trail progress"><div id="progress-fill"></div></div>
+            <div class="canvas-wrap" id="canvas-wrap">
+              <canvas id="game" aria-label="WhirlQuest Skybound adventure. Tap, click or press Space to make your leaf jump and spin.">Your browser does not support the game canvas.</canvas>
+              <div id="game-overlay" class="game-overlay">
+                <div class="overlay-card">
+                  <span class="overlay-icon" id="overlay-icon">✦</span>
+                  <h2 id="overlay-title">Ready, sky explorer?</h2>
+                  <p id="overlay-description">Tap to flip your magic leaf. Collect fruit, dodge storm clouds and reach the rainbow gate!</p>
+                  <button id="overlay-action" class="primary-button" type="button">Let's fly! <span aria-hidden="true">➜</span></button>
+                  <span class="overlay-helper" id="overlay-helper">Tap the game · Click · Spacebar</span>
+                </div>
+              </div>
+              <div id="gate-panel" class="gate-panel" hidden>
+                <div class="gate-card">
+                  <span class="gate-eyebrow">✦ RAINBOW REWARD GATE</span>
+                  <h2>Choose your star trail!</h2>
+                  <p id="gate-question">Which path would grow your stars the most?</p>
+                  <div id="gate-choices" class="gate-choices"></div>
+                  <button id="gate-hint" class="text-button" type="button">💡 Give me a little hint</button>
+                  <p id="gate-feedback" class="gate-feedback" aria-live="polite"></p>
+                  <button id="gate-continue" class="primary-button" type="button" hidden>On to the next trail ➜</button>
+                </div>
+              </div>
+              <div id="floating-tip" class="floating-tip" aria-live="polite" hidden></div>
+            </div>
+            <div class="control-bar">
+              <div class="control-hint"><span class="finger-icon">☝</span><span><strong>Tap to flip & glide</strong><small>Try a second tap while you're in the air!</small></span></div>
+              <div class="control-buttons">
+                <button id="jump-button" class="jump-button" type="button">↥ FLIP!</button>
+                <button id="pause-button" class="icon-button" type="button" aria-label="Pause game" title="Pause">Ⅱ</button>
+                <button id="sound-button" class="icon-button" type="button" aria-label="Turn sound on" aria-pressed="false" title="Sound">♪</button>
+              </div>
+            </div>
+          </div>
+          <div class="below-game">
+            <div class="stat"><span class="stat-symbol lavender">🏅</span><span><small>TRAILS FINISHED</small><strong id="completed-stat">0 <em>/ 15</em></strong></span></div>
+            <div class="stat"><span class="stat-symbol yellow">✦</span><span><small>HERO STARS</small><strong id="stars-stat">0</strong></span></div>
+            <div class="stat"><span class="stat-symbol green">🪁</span><span><small>BEST COMBO</small><strong id="combo-stat">0</strong></span></div>
+          </div>
+        </div>
+
+        <aside class="side-column">
+          <div class="panel mission-panel">
+            <div class="panel-heading"><span>YOUR NEXT LITTLE MISSION</span><span class="mini-spark">✳</span></div>
+            <div class="mission-body"><span class="mission-art">🍎</span><div><strong id="mission-title">Collect 5 treasures</strong><p id="mission-text">Catch the glowing fruit along the sky trail.</p></div></div>
+            <div class="mission-track"><div id="mission-progress"></div></div>
+            <small id="mission-count">0 of 5 treasures</small>
+          </div>
+          <div class="panel map-panel">
+            <div class="map-heading"><div><span class="tiny-label">CHOOSE YOUR ADVENTURE</span><h2>Sky trail map</h2></div><span class="map-count">15 trails</span></div>
+            <div class="world-tabs" role="tablist" aria-label="Adventure worlds" id="world-tabs"></div>
+            <div class="stage-list" id="stage-list"></div>
+            <div class="map-footer">All trails are open to explore. Play at your own pace! ♡</div>
+          </div>
+          <div class="pip-tip"><span class="tip-pip">✦</span><div><strong>Pip's little tip</strong><p id="pip-tip-text">Don't worry if you miss. Every attempt is a chance to learn!</p></div></div>
+        </aside>
+      </section>
+
+      <section class="footer-grid" aria-label="More ways to play">
+        <article class="info-card"><div class="info-icon">🌱</div><div><h3>Learn by doing</h3><p>Try a gentle practice flight first. Get the feel of the jumps without any storm-cloud trouble.</p><button id="practice-button" class="inline-action" type="button">Start practice →</button></div></article>
+        <article class="info-card"><div class="info-icon">🧩</div><div><h3>Little maths, big magic</h3><p>Choose reward paths at the end of each trail and discover how adding and multiplying work.</p><span class="info-foot">Made for curious minds</span></div></article>
+        <article class="info-card"><div class="info-icon">🔗</div><div><h3>Part of Hero Academy</h3><p>Play without signing in. Your progress stays in this browser until shared account linking is ready.</p><a class="inline-action" href="https://chorequest.heroacademy.app" target="_blank" rel="noopener noreferrer">Visit ChoreQuest ↗</a></div></article>
+      </section>
+    </main>
+    <footer class="site-footer"><span>✦ HERO ACADEMY <span class="footer-mute">· Made for little explorers</span></span><span>No ads · No purchases · UK English · <a href="https://heroacademy.app">Back to Academy</a></span></footer>
+  </div>
+
+  <dialog id="profiles-dialog" aria-labelledby="profiles-title">
+    <div class="dialog-head"><div><span class="tiny-label">YOUR ADVENTURE</span><h2 id="profiles-title">Who's playing?</h2></div><button id="close-profiles" class="close-button" type="button" aria-label="Close profiles">×</button></div>
+    <p>Everyone gets their own saved sky trails on this device.</p>
+    <div id="profiles-list" class="profiles-list"></div>
+    <form id="new-profile-form" class="profile-form"><label for="new-profile-name">Add an explorer</label><div><input id="new-profile-name" maxlength="20" placeholder="Explorer's name" required><button class="primary-button" type="submit">Add +</button></div></form>
+    <div class="dialog-actions"><button id="export-save" type="button" class="secondary-button">↓ Save backup</button><label for="import-save" class="secondary-button file-label">↑ Load backup</label><input id="import-save" type="file" accept="application/json,.json" hidden></div>
+    <p class="dialog-note">Saves are local to this browser. Backups can restore your explorers on another device. Hero stars aren't ChoreQuest points.</p>
+  </dialog>
+  <div class="sr-only" id="announcer" aria-live="polite"></div>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
